@@ -376,14 +376,77 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/poly1305.cpp \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
+  crypto/aes_helper.c \
+  crypto/blake.c \
+  crypto/bmw.c \
+  crypto/cubehash.c \
+  crypto/echo.c \
+  crypto/groestl.c \
+  crypto/jh.c \
+  crypto/keccak.c \
+  crypto/luffa.c \
+  crypto/shavite.c \
+  crypto/simd.c \
+  crypto/skein.c \
+  crypto/sph_hamsi.c \
+  crypto/sph_hamsi_helper.c \
+  crypto/sph_fugue.c \
+  crypto/sph_shabal.c \
+  crypto/sph_whirlpool.c \
+  crypto/sph_sha2.c \
+  crypto/sph_sha512.c \
   crypto/sha1.cpp \
   crypto/sha1.h \
   crypto/sha256.cpp \
   crypto/sha256.h \
-  crypto/sha512.cpp \
-  crypto/sha512.h \
+  crypto/sph_blake.h \
+  crypto/sph_bmw.h \
+  crypto/sph_cubehash.h \
+  crypto/sph_echo.h \
+  crypto/sph_groestl.h \
+  crypto/sph_jh.h \
+  crypto/sph_keccak.h \
+  crypto/sph_luffa.h \
+  crypto/sph_shavite.h \
+  crypto/sph_simd.h \
+  crypto/sph_skein.h \
+  crypto/sph_hamsi.h \
+  crypto/sph_fugue.h \
+  crypto/sph_shabal.h \
+  crypto/sph_whirlpool.h \
+  crypto/sph_sha2.h \
+  crypto/sph_types.h \
   crypto/siphash.cpp \
-  crypto/siphash.h
+  crypto/siphash.h \
+  crypto/sha512.cpp \
+  cryptonote/aesb.c \
+  cryptonote/c_blake256.c \
+  cryptonote/c_groestl.c \
+  cryptonote/c_jh.c \
+  cryptonote/c_keccak.c \
+  cryptonote/c_skein.c \
+  cryptonote/slow-hash.c \
+  cryptonote/hash-ops.c \
+  cryptonote/oaes_lib.c \
+  cryptonote/wild_keccak.cpp \
+  cryptonote/c_blake256.h \
+  cryptonote/c_groestl.h \
+  cryptonote/c_jh.h \
+  cryptonote/c_keccak.h \
+  cryptonote/crypto.h \
+  cryptonote/c_skein.h \
+  cryptonote/groestl_tables.h \
+  cryptonote/slow-hash.h \
+  cryptonote/int-util.h \
+  cryptonote/oaes_config.h \
+  cryptonote/hash-ops.h \
+  cryptonote/oaes_lib.h \
+  cryptonote/skein_port.h \
+  cryptonote/variant2_int_sqrt.h \
+  cryptonote/wild_keccak.h \
+  cryptonote/warnings.h \
+  crypto/sha512.h
+  
 
 if USE_ASM
 crypto_libbitcoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
@@ -419,6 +482,8 @@ libbitcoin_consensus_a_SOURCES = \
   consensus/params.h \
   consensus/tx_check.cpp \
   consensus/validation.h \
+  hash_selection.h \
+  hash_selection.cpp \
   hash.cpp \
   hash.h \
   prevector.h \
