@@ -30,8 +30,9 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
 
     // peercoin: target change every block
     // peercoin: retarget with exponential moving toward target spacing
-    CBigNum bnNew;
-    bnNew.SetCompact(pindexPrev->nBits);
+         CBigNum  bnNew;
+       //  bnNew = arith_uint512(arith_uint256().SetCompact(pindex->nBits));
+        bnNew.SetCompact(pindexPrev->nBits);
     if (Params().NetworkIDString() != CBaseChainParams::REGTEST) {
         int64_t nTargetSpacing;
 
