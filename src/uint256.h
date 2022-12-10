@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <crypto/common.h>
 
 /** Template base class for fixed-sized opaque blobs. */
 template<unsigned int BITS>
@@ -126,6 +127,17 @@ class uint256 : public base_blob<256> {
 public:
     uint256() {}
     explicit uint256(const std::vector<unsigned char>& vch) : base_blob<256>(vch) {}
+    int GetNibble(int index) const
+	{
+		index = 63 - index;
+		if (index % 2 == 1)
+			return(data[index / 2] >> 4);
+		return(data[index / 2] & 0x0F);
+	}
+    uint64_t GetCheapHash() const
+    {
+        return ReadLE64(data);
+    }
 };
 
 /* uint256 from const char *.
@@ -150,5 +162,52 @@ inline uint256 uint256S(const std::string& str)
 }
 
 uint256& UINT256_ONE();
+
+/** 512-bit unsigned big integer. */
+class uint512 : public base_blob<512> {
+public:
+    uint512() {}
+    uint512(const base_blob<512>& b) : base_blob<512>(b) {}
+    explicit uint512(const std::vector<unsigned char>& vch) : base_blob<512>(vch) {}
+
+    uint256 trim256() const
+    {
+        uint256 result;
+        memcpy((void*)&result, (void*)data, 32);
+        return result;
+    }
+};
+
+/* uint512 from const char *.
+* This is a separate function because the constructor uint512(const char*) can result
+* in dangerously catching uint512(0).
+*/
+inline uint512 uint512S(const char *str)
+{
+    uint512 rv;
+    rv.SetHex(str);
+    return rv;
+}
+/* uint512 from std::string.
+* This is a separate function because the constructor uint512(const std::string &str) can result
+* in dangerously catching uint512(0) via std::string(const char*).
+*/
+inline uint512 uint512S(const std::string& str)
+{
+    uint512 rv;
+    rv.SetHex(str);
+    return rv;
+}
+
+namespace std {
+    template <>
+    struct hash<uint256>
+    {
+        std::size_t operator()(const uint256& k) const
+        {
+            return (std::size_t)k.GetCheapHash();
+        }
+    };
+}
 
 #endif // BITCOIN_UINT256_H
