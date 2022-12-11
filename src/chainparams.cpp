@@ -104,7 +104,6 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 0;
-        // FindMainNetGenesisBlock(1670632596, 1670632775, 0x20001fff, "main");
         genesis = CreateGenesisBlock(1670632596, 1670632775, 3909, 0x20001fff, 1, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x39b2079b2f5c079450036f8851fe4b96cfa46fefaa09c8c0392cf13838037307"));
