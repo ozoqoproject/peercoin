@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Pozoqo
+Comment=Desktop allet for Pozoqo Cryptocurrency
+Comment[de]=Offizieller Client für die Kryptowährung Pozoqo
+Exec=pozoqo-qt %u
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/pozoqo128.png
+MimeType=x-scheme-handler/pozoqo;
+Categories=Office;Finance;P2P;Network;Qt;

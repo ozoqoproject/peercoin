@@ -167,7 +167,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createwallet", 4, "avoid_reuse"},
     { "getnodeaddresses", 0, "count"},
     { "stop", 0, "wait" },
-    // peercoin:
+    // pozoqo:
     { "importcoinstake", 1, "timestamp" },
     { "reservebalance", 0, "reserve" },
     { "reservebalance", 1, "amount" },

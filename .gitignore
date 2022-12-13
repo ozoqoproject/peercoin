@@ -3,15 +3,15 @@
 *.exe
 *.pdb
 src/*/*.exe
-src/peercoin
-src/peercoind
-src/peercoin-cli
-src/peercoin-tx
-src/peercoin-wallet
+src/pozoqo
+src/pozoqod
+src/pozoqo-cli
+src/pozoqo-tx
+src/pozoqo-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_peercoin
-src/qt/test/test_peercoin-qt
+src/test/test_pozoqo
+src/qt/test/test_pozoqo-qt
 
 # autoreconf
 Makefile.in
@@ -67,8 +67,8 @@ src/qt/bitcoin-qt.includes
 *.pyc
 *.o
 *.o-*
-.ppcoin
-.peercoin
+.pzqcoin
+.pozoqo
 *.a
 *.pb.cc
 *.pb.h
@@ -93,9 +93,9 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/peercoin-qt
-PPCoin-Qt.app
-Peercoin-Qt.app
+src/qt/pozoqo-qt
+PZQ-Qt.app
+Pozoqo-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -104,7 +104,7 @@ Makefile.am.user
 # Unit-tests
 Makefile.test
 ppcoin-qt_test
-peercoin-qt_test
+pozoqo-qt_test
 
 # Resources cpp
 qrc_*.cpp

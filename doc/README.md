@@ -1,40 +1,40 @@
-Peercoin 0.11.7 BETA
+Pozoqo 0.11.7 BETA
 
 Setup
 ---------------------
-Peercoin is the original Peercoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Peercoin transactions (which is currently less than one gigabyte); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Pozoqo is the original Pozoqo client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Pozoqo transactions (which is currently less than one gigabyte); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Peercoin, visit [peercoin.net](https://peercoin.net/download).
+To download Pozoqo, visit [pozoqo.tech](https://pozoqo.tech/download).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Peercoin on your native platform.
+The following are some helpful notes on how to run Pozoqo on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/peercoin-qt` (GUI) or
-- `bin/peercoind` (headless)
+- `bin/pozoqo-qt` (GUI) or
+- `bin/pozoqod` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run peercoin-qt.exe.
+Unpack the files into a directory, and then run pozoqo-qt.exe.
 
 ### macOS
 
-Drag Peercoin to your applications folder, and then run Peercoin.
+Drag Pozoqo to your applications folder, and then run Pozoqo.
 
 ### Need Help?
 
-* See the documentation at the [Peercoin Wiki](https://docs.peercoin.net/)
+* See the documentation at the [Pozoqo Wiki](https://docs.pozoqo.tech/)
 for help and more information.
-* Peercoin is very similar to bitcoin, so you can use their wiki [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page).
-* Ask for help on [#general](https://peercoin.chat/) on peercoin.chat.
+* Pozoqo is very similar to bitcoin, so you can use their wiki [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page).
+* Ask for help on [#general](https://pozoqo.chat/) on pozoqo.chat.
 
 Building
 ---------------------
-The following are developer notes on how to build Peercoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Pozoqo on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -47,7 +47,7 @@ The following are developer notes on how to build Peercoin on your native platfo
 
 Development
 ---------------------
-The Peercoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Pozoqo repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -64,7 +64,7 @@ The Peercoin repo's [root README](/README.md) contains relevant information on t
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Peercoin](https://talk.peercoin.net/) forums.
+* Discuss on the [Pozoqo](https://talk.pozoqo.tech/) forums.
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

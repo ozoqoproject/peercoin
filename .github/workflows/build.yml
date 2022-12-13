@@ -114,7 +114,7 @@ jobs:
         working-directory: ${{ env.GITIAN_DIR }}
         run: |
           sed -i "s/^\ \ \(HOSTS=\"\).*/\ \ \1${{ matrix.host }}\"/g" ${{ steps.detect.outputs.descriptor }}
-          ./bin/gbuild -j $MAKEJOBS --commit peercoin=$(git -C ${{ steps.detect.outputs.build-dir }} log --format="%H" -n 1) --url peercoin=${{ steps.detect.outputs.build-dir }} ${{ steps.detect.outputs.descriptor }}
+          ./bin/gbuild -j $MAKEJOBS --commit pozoqo=$(git -C ${{ steps.detect.outputs.build-dir }} log --format="%H" -n 1) --url pozoqo=${{ steps.detect.outputs.build-dir }} ${{ steps.detect.outputs.descriptor }}
           cp -r ${GITIAN_DIR}/build/out/* ${{ steps.detect.outputs.build-dir }}/
 
       - name: Get short SHA
@@ -123,7 +123,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: peercoin-${{ steps.slug.outputs.sha8 }}-${{ matrix.name }}
+          name: pozoqo-${{ steps.slug.outputs.sha8 }}-${{ matrix.name }}
           path: |
             *.tar.gz
             *.zip
@@ -138,7 +138,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: peercoin/packaging
+          repository: pozoqo/packaging
 
       - uses: actions/download-artifact@v2
         with:
@@ -148,9 +148,9 @@ jobs:
         working-directory: docker
         run: |
           mkdir -p linux/amd64 linux/arm64 linux/arm/v7
-          mv peercoin-*-armhf-linux/peercoin-*-arm-linux-gnueabihf.tar.gz linux/arm/v7/
-          mv peercoin-*-aarch64-linux/peercoin-*-aarch64-linux-gnu.tar.gz linux/arm64/
-          mv peercoin-*-x86_64-linux/peercoin-*-x86_64-linux-gnu.tar.gz linux/amd64/
+          mv pozoqo-*-armhf-linux/pozoqo-*-arm-linux-gnueabihf.tar.gz linux/arm/v7/
+          mv pozoqo-*-aarch64-linux/pozoqo-*-aarch64-linux-gnu.tar.gz linux/arm64/
+          mv pozoqo-*-x86_64-linux/pozoqo-*-x86_64-linux-gnu.tar.gz linux/amd64/
 
       - uses: crazy-max/ghaction-docker-buildx@v1
 
@@ -181,8 +181,8 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             PUSH=true
             TAG_NAME=${GITHUB_REF/refs\/tags\//}
-            TAG_NAME=${TAG_NAME/ppc\./}
-            TAG_NAME=${TAG_NAME/ppc/}
+            TAG_NAME=${TAG_NAME/pzq\./}
+            TAG_NAME=${TAG_NAME/pzq/}
             TAG_NAME=${TAG_NAME/v/}
           fi
           echo ::set-output name=push::${PUSH}
@@ -194,7 +194,7 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm/v7,linux/arm64 \
             --output "type=image,push=${{ steps.detect.outputs.push }}" \
             --progress=plain \
-            --tag ghcr.io/${{ github.repository }}/peercoind:${{ steps.detect.outputs.tag-name }} \
+            --tag ghcr.io/${{ github.repository }}/pozoqod:${{ steps.detect.outputs.tag-name }} \
           .
   appimage:
     runs-on: ubuntu-latest
@@ -222,7 +222,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: peercoin/packaging
+          repository: pozoqo/packaging
 
       - uses: actions/download-artifact@v2
         with:
@@ -243,8 +243,8 @@ jobs:
           TAG_NAME=$SHA8
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             TAG_NAME=${GITHUB_REF/refs\/tags\//}
-            TAG_NAME=${TAG_NAME/ppc\./}
-            TAG_NAME=${TAG_NAME/ppc/}
+            TAG_NAME=${TAG_NAME/pzq\./}
+            TAG_NAME=${TAG_NAME/pqz/}
             TAG_NAME=${TAG_NAME/v/}
           fi
           echo ::set-output name=sha8::$SHA8
@@ -254,14 +254,14 @@ jobs:
       - name: Build AppImage
         working-directory: appimage
         run: |
-          tar xzf peercoin-${{ steps.detect.outputs.sha8 }}-${{ matrix.name }}-linux/peercoin-*-${{ matrix.host }}.tar.gz -C AppDir --strip-components=1
-          rm AppDir/bin/peercoin-cli AppDir/bin/peercoin-tx AppDir/bin/peercoin-wallet AppDir/bin/peercoind
+          tar xzf pozoqo-${{ steps.detect.outputs.sha8 }}-${{ matrix.name }}-linux/pozoqo-*-${{ matrix.host }}.tar.gz -C AppDir --strip-components=1
+          rm AppDir/bin/pozoqo-cli AppDir/bin/pozoqo-tx AppDir/bin/pozoqo-wallet AppDir/bin/pozoqod
           VERSION=${{ steps.detect.outputs.tag-name }} SOURCES_REPO=${{ matrix.sources_repo }} APT_ARCH=${{ matrix.apt_arch }} BUILD_ARCH=${{ matrix.name }} appimage-builder --skip-tests
           mv *.AppImage* ${{ steps.detect.outputs.build-dir }}/
 
       - uses: actions/upload-artifact@v2
         with:
-          name: peercoin-appimage-${{ steps.detect.outputs.tag-name }}-${{ matrix.name }}
+          name: pozoqo-appimage-${{ steps.detect.outputs.tag-name }}-${{ matrix.name }}
           path: |
             *.AppImage*
           retention-days: 5
@@ -282,8 +282,8 @@ jobs:
           fi
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             TAG_NAME=${GITHUB_REF/refs\/tags\//}
-            TAG_NAME_NO_DOT=${TAG_NAME/ppc\./}
-            RELEASE_TITLE="Release ${TAG_NAME_NO_DOT/ppc/}"
+            TAG_NAME_NO_DOT=${TAG_NAME/pzq\./}
+            RELEASE_TITLE="Release ${TAG_NAME_NO_DOT/pzq/}"
           fi
           if [[ -z "${{ secrets.GPG_PRIVATE_KEY }}" ]]; then
             TAG_NAME=noop
@@ -324,11 +324,11 @@ jobs:
         run: |
           rm -rf ${{ steps.detect.outputs.tag-name }}/*
           mkdir -p ${{ steps.detect.outputs.tag-name }}
-          mv peercoin-*-**/peercoin-*.tar.gz \
-            peercoin-*-**/peercoin-*.zip \
-            peercoin-*-**/peercoin-*.exe \
-            peercoin-*-**/peercoin-*.dmg \
-            peercoin-*-**/*.AppImage* \
+          mv pozoqo-*-**/pozoqo-*.tar.gz \
+            pozoqo-*-**/pozoqo-*.zip \
+            pozoqo-*-**/pozoqo-*.exe \
+            pozoqo-*-**/pozoqo-*.dmg \
+            pozoqo-*-**/*.AppImage* \
           ${{ steps.detect.outputs.tag-name }}/
           cd ${{ steps.detect.outputs.tag-name }}
           sha256sum * > SHA256SUMS
@@ -336,7 +336,7 @@ jobs:
           rm SHA256SUMS
           cd -
           mktorrent -w ${{ github.server_url }}/${{ github.repository }}/releases/download \
-            -o ${{ steps.detect.outputs.tag-name }}/peercoin-${{ steps.detect.outputs.tag-name }}.torrent \
+            -o ${{ steps.detect.outputs.tag-name }}/pozoqo-${{ steps.detect.outputs.tag-name }}.torrent \
             -a udp://tracker.opentrackr.org:1337/announce \
             -a udp://tracker.openbittorrent.com:6969/announce \
             -a udp://exodus.desync.com:6969/announce \
