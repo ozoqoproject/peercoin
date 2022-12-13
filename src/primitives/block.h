@@ -28,9 +28,9 @@ public:
     uint32_t nBits;
     uint32_t nNonce;
 
-    // peercoin: A copy from CBlockIndex.nFlags from other clients. We need this information because we are using headers-first syncronization.
+    // pozoqo: A copy from CBlockIndex.nFlags from other clients. We need this information because we are using headers-first syncronization.
     uint32_t nFlags;
-    // peercoin: Used in CheckProofOfStake().
+    // pozoqo: Used in CheckProofOfStake().
     static const int32_t NORMAL_SERIALIZE_SIZE=80;
     static const int32_t CURRENT_VERSION=3;
 
@@ -50,7 +50,7 @@ public:
         READWRITE(nBits);
         READWRITE(nNonce);
 
-        // peercoin: do not serialize nFlags when computing hash
+        // pozoqo: do not serialize nFlags when computing hash
         if (!(s.GetType() & SER_GETHASH) && s.GetType() & SER_POSMARKER)
             READWRITE(nFlags);
     }
@@ -88,7 +88,7 @@ public:
     // network and disk
     std::vector<CTransactionRef> vtx;
 
-    // peercoin: block signature - signed by coin base txout[0]'s owner
+    // pozoqo: block signature - signed by coin base txout[0]'s owner
     std::vector<unsigned char> vchBlockSig;
 
     // memory only
@@ -135,7 +135,7 @@ public:
         return block;
     }
 
-    // peercoin: two types of block: proof-of-work or proof-of-stake
+    // pozoqo: two types of block: proof-of-work or proof-of-stake
     bool IsProofOfStake() const
     {
         return (vtx.size() > 1 && vtx[1]->IsCoinStake());
@@ -151,7 +151,7 @@ public:
         return IsProofOfStake() ? std::make_pair(vtx[1]->vin[0].prevout, vtx[1]->nTime) : std::make_pair(COutPoint(), (unsigned int)0);
     }
 
-    // peercoin: get max transaction timestamp
+    // pozoqo: get max transaction timestamp
     int64_t GetMaxTransactionTime() const
     {
         int64_t maxTransactionTime = 0;
@@ -160,7 +160,7 @@ public:
         return maxTransactionTime;
     }
 
-    unsigned int GetStakeEntropyBit() const; // peercoin: entropy bit for stake modifier if chosen by modifier
+    unsigned int GetStakeEntropyBit() const; // pozoqo: entropy bit for stake modifier if chosen by modifier
 
     std::string ToString() const;
 };

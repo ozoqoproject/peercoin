@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Pozoqo (testnet)
+Comment=Desktop allet for Pozoqo Cryptocurrency (testnet)
+Comment[de]=Offizieller Client für die Kryptowährung Pozoqo (testnet)
+Exec=pozoqo-qt -testnet %u
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/pozoqo-testnet128.png
+MimeType=x-scheme-handler/pozoqo;
+Categories=Application;Network;

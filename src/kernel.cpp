@@ -440,7 +440,7 @@ static bool GetKernelStakeModifier(CBlockIndex* pindexPrev, uint256 hashBlockFro
         return GetKernelStakeModifierV03(pindexPrev, hashBlockFrom, nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake);
 }
 
-// peercoin kernel protocol
+// pozoqo kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
@@ -640,7 +640,7 @@ bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRe
     return (nFound >= nRequired);
 }
 
-// peercoin: entropy bit for stake modifier if chosen by modifier
+// pozoqo: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block)
 {
     unsigned int nEntropyBit = 0;

@@ -28,8 +28,8 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
 
     int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
 
-    // peercoin: target change every block
-    // peercoin: retarget with exponential moving toward target spacing
+    // pozoqo: target change every block
+    // pozoqo: retarget with exponential moving toward target spacing
          CBigNum  bnNew;
        //  bnNew = arith_uint512(arith_uint256().SetCompact(pindex->nBits));
         bnNew.SetCompact(pindexPrev->nBits);
