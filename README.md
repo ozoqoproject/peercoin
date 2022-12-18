@@ -4,16 +4,12 @@
 [![Continuous Integration](https://github.com/pozoqo/pozoqo/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pozoqo/pozoqo/actions/workflows/build.yml)
 
 ### What is Pozoqo?
-[Pozoqo](https://pozoqo.tech) (abbreviated PPC), previously known as PPCoin, is the first [cryptocurrency](https://en.wikipedia.org/wiki/Cryptocurrency) design introducing [proof-of-stake consensus](https://pozoqo.tech/resources#whitepaper) as a security model, with a combined [proof-of-stake](https://pozoqo.tech/resources#whitepaper)/[proof-of-work](https://en.wikipedia.org/wiki/Proof-of-work_system) minting system. Pozoqo is based on [Bitcoin](https://bitcoin.org), while introducing many important innovations to cryptocurrency field including new security model, energy efficiency, better minting model and more adaptive response to rapid change in network computation power.
-### Pozoqo Resources
-* Client and Source:
-[Client Binaries](https://github.com/pozoqo/pozoqo/releases),
-[Source Code](https://github.com/pozoqo/pozoqo)
-* Documentation: [Pozoqo Docs](https://docs.pozoqo.tech)
+Pozoqo uses both the proof of work algorithm basically Ghostrider and proof of stake in driving its blockchain technology. Pozoqo is an open ledger which is not hidden but it is available for the general public to view. Each PZQ block contains series of transactions which are valid and acceptable to the various nodes.
+We use the Ghostrider algorithm which is part of our Proof of Work for coin distribution that is miners simply dig in to get reward for block found by solving mathematical problems using CPU because Pozoqo is basically free from Asic machines. 
+
 * Help: 
-[Forum](https://talk.pozoqo.tech),
-[Intro & Important Links](https://talk.pozoqo.tech/t/what-is-pozoqo-intro-important-links/2889),
-[Telegram Chat](https://t.me/pozoqo)
+[Discord](https://discord.gg/8bxpTRKvbD),
+
 
 Testing
 -------
@@ -41,21 +37,6 @@ Large changes should have a test plan, and should be tested by somebody other th
 * From time to time a pull request will become outdated. If this occurs, and the pull is no longer automatically mergeable; a comment on the pull will be used to issue a warning of closure.  Pull requests closed in this manner will have their corresponding issue labeled 'stagnant'.
 * For development ideas and help see [here](https://talk.pozoqo.tech/c/protocol).
 
-## Branches:
 
-### develop (all pull requests should go here)
-The develop branch is used by developers to merge their newly implemented features to.
-Pull requests should always be made to this branch (except for critical fixes), and could possibly break the code.
-The develop branch is therefore unstable and not guaranteed to work on any system.
-
-### master (only updated by group members)
-The master branch get's updates from tested states of the develop branch.
-Therefore, the master branch should contain functional but experimental code.
-
-### release-* (the official releases)
-The release branch is identified by it's major and minor version number e.g. `release-0.6`.
-The official release tags are always made on a release branch.
-Release branches will typically branch from or merge tested code from the master branch to freeze the code for release.
-Only critical patches can be applied through pull requests directly on this branch, all non critical features should follow the standard path through develop -> master -> release-*
 
 
