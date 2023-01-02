@@ -57,6 +57,8 @@ struct Params {
     int64_t nStakeTargetSpacing;
     int64_t nTargetSpacingWorkMax;
     int64_t nTargetTimespan;
+    int64_t nTHeight;
+    int64_t nTpozoqo;
     int64_t nStakeMinAge;
     int64_t nStakeMaxAge;
     int64_t nModifierInterval;
