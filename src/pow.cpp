@@ -9,7 +9,7 @@
 #include <chain.h>
 #include <primitives/block.h>
 #include <uint256.h>
-
+#include <util/system.h>
 #include <bignum.h>
 #include <chainparams.h>
 #include <kernel.h>
@@ -169,9 +169,9 @@ unsigned int pozoqo_new(const CBlockIndex* pindexLast, bool fProofOfStake, const
 		bnNew = UintToArith256(params.powLimit);
 
 	// debug print
-	printf("nTargetTimespan = %d    nActualTimespan = %d\n", retargetTimespan, nActualTimespan);
-	printf("Before: %08x  %s\n", pindexLast->nBits, ArithToUint256(bnBefore).ToString());
-	printf("After:  %08x  %s\n", bnNew.GetCompact(), ArithToUint256(bnNew).ToString());
+	LogPrintf("nTargetTimespan = %d    nActualTimespan = %d\n", retargetTimespan, nActualTimespan);
+	LogPrintf("Before: %08x  %s\n", pindexLast->nBits, ArithToUint256(bnBefore).ToString());
+	LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), ArithToUint256(bnNew).ToString());
 
 	return bnNew.GetCompact();
 }
