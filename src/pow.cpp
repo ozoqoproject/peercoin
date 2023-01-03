@@ -109,8 +109,71 @@ unsigned int pozoqo(const CBlockIndex* pindexLast, bool fProofOfStake, const Con
 	if (bnFinal <= 0 || bnFinal > bnPowLimit) {
 		bnFinal = bnPowLimit;
 	}
-
+    if(pindexLast->nHeight + 1 >= params.nRTarget){
+      return pozoqo_new(pindexLast, fProofOfStake, params);
+     }
 	return bnFinal.GetCompact();
+}
+unsigned int pozoqo_new(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
+{
+	int nHeight = pindexLast->nHeight + 1;
+	bool fNewDifficultyProtocol = (nHeight >= params.nRTarget);
+	int blockstogoback = 0;
+	int64_t retargetTimespan = 1;
+	int64_t retargetInterval = 1;
+	if(fNewDifficultyProtocol && !params.fPowAllowMinDifficultyBlocks) {
+		retargetTimespan = params.nStakeTargetSpacing;
+		retargetInterval = 1;
+	}
+        if (fProofOfStake) {
+            retargetTimespan = params.nStakeTargetSpacing;
+        }
+
+	// Only change once per interval
+	if ((pindexLast->nHeight+1) % retargetInterval != 0)
+	{
+		return pindexLast->nBits;
+	}
+
+	blockstogoback = retargetInterval-1;
+	if ((pindexLast->nHeight+1) != retargetInterval)
+		blockstogoback = retargetInterval;
+
+	// Go back by what we want to be 14 days worth of blocks
+	const CBlockIndex* pindexFirst = pindexLast;
+	for (int i = 0; pindexFirst && i < blockstogoback; i++)
+		pindexFirst = pindexFirst->pprev;
+	assert(pindexFirst);
+
+	// Limit adjustment step
+	int64_t nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+
+	// thanks to RealSolid & WDC for this code
+	if(fNewDifficultyProtocol && !params.fPowAllowMinDifficultyBlocks) {
+		if (nActualTimespan < (retargetTimespan - (retargetTimespan/4)) ) nActualTimespan = (retargetTimespan - (retargetTimespan/4));
+		if (nActualTimespan > (retargetTimespan + (retargetTimespan/2)) ) nActualTimespan = (retargetTimespan + (retargetTimespan/2));
+	}
+	else {
+		if (nActualTimespan < retargetTimespan/4) nActualTimespan = retargetTimespan/4;
+		if (nActualTimespan > retargetTimespan*4) nActualTimespan = retargetTimespan*4;
+	}
+
+	arith_uint256 bnNew;
+	arith_uint256 bnBefore;
+	bnNew.SetCompact(pindexLast->nBits);
+	bnBefore=bnNew;
+	bnNew *= nActualTimespan;
+	bnNew /= retargetTimespan;
+
+	if (bnNew > UintToArith256(params.powLimit))
+		bnNew = UintToArith256(params.powLimit);
+
+	// debug print
+	printf("nTargetTimespan = %d    nActualTimespan = %d\n", retargetTimespan, nActualTimespan);
+	printf("Before: %08x  %s\n", pindexLast->nBits, ArithToUint256(bnBefore).ToString());
+	printf("After:  %08x  %s\n", bnNew.GetCompact(), ArithToUint256(bnNew).ToString());
+
+	return bnNew.GetCompact();
 }
 
 
