@@ -122,7 +122,7 @@ unsigned int pozoqo_new(const CBlockIndex* pindexLast, bool fProofOfStake, const
 	int64_t retargetTimespan = 1;
 	int64_t retargetInterval = 1;
 	if(fNewDifficultyProtocol && !params.fPowAllowMinDifficultyBlocks) {
-		retargetTimespan = params.nStakeTargetSpacing;
+		retargetTimespan = params.nTargetSpacingWorkMax;
 		retargetInterval = 1;
 	}
         if (fProofOfStake) {

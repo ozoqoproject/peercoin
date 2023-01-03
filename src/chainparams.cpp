@@ -81,7 +81,7 @@ public:
         consensus.nModifierInterval = 6 * 60 * 60; // Modifier interval: time to elapse before new modifier is computed
         consensus.nCoinbaseMaturity = 500;
         consensus.nTHeight = 1880;
-        consensus.nRTarget = 65000;
+        consensus.nRTarget = 57400;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
