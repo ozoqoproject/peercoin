@@ -3,6 +3,7 @@
 [![Pozoqo Donate](https://badgen.net/badge/pozoqo/Donate/green?icon=https://raw.githubusercontent.com/pozoqo/media/84710cca6c3c8d2d79676e5260cc8d1cd729a427/Pozoqo%202020%20Logo%20Files/01.%20Icon%20Only/Inside%20Circle/Transparent/Green%20Icon/pozoqo-icon-green-transparent.svg)](https://chainz.cryptoid.info/ppc/address.dws?p92W3t7YkKfQEPDb7cG9jQ6iMh7cpKLvwK)
 [![Continuous Integration](https://github.com/pozoqo/pozoqo/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pozoqo/pozoqo/actions/workflows/build.yml)
 
+# [Our NEW GITHUB page is HERE ](https://github.com/pozoqoproject/pozoqo)
 ### What is Pozoqo?
 Pozoqo uses both the proof of work algorithm basically Ghostrider and proof of stake in driving its blockchain technology. Pozoqo is an open ledger which is not hidden but it is available for the general public to view. Each PZQ block contains series of transactions which are valid and acceptable to the various nodes.
 We use the Ghostrider algorithm which is part of our Proof of Work for coin distribution that is miners simply dig in to get reward for block found by solving mathematical problems using CPU because Pozoqo is basically free from Asic machines. 
